@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-
-console.log('Hello cli')
+"use strict";
+console.log('Hello cli');
