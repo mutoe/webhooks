@@ -2,6 +2,9 @@
   "name": "@mutoe/webhooks",
   "version": "0.1.0",
   "main": "index.ts",
+  "bin": {
+    "webhooks": "./bin/index.js"
+  },
   "license": "MIT",
   "description": "Webhooks cli",
   "repository": "git@github.com:/mutoe/webhooks.git",
