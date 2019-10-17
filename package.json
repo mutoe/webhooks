@@ -1,0 +1,10 @@
+{
+  "name": "@mutoe/webhooks",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "description": "Webhooks cli",
+  "repository": "git@github.com:/mutoe/webhooks.git",
+  "author": "mutoe <mutoe@foxmail.com>",
+  "private": false
+}
