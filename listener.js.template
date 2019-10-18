@@ -1,10 +1,10 @@
 const http = require('http')
 const crypto = require('crypto')
-const exec = require('child_process').exec
+const execFile = require('child_process').execFile
 
 const port = {{port}}
 const secret = '{{secret}}'
-const bash = `{{bash}}`
+const bashFile = './pull.sh'
 
 const sign = data => `sha1=${crypto.createHmac('sha1', secret).update(data).digest('hex')}`
 
@@ -21,7 +21,7 @@ const app = http.createServer((req, res) => {
       return
     }
 
-    stdout = exec(bash, (err, stdout, stderr) => {
+    stdout = execFile(bashFile, (err, stdout, stderr) => {
       if (err) {
         res.writeHead(500)
         res.end(JSON.stringify({ error: err }))

@@ -16,6 +16,11 @@ const config = {
   bash: `#!/bin/bash
   
 # The following scripts will be run when the hook is triggered.
+# For example
+#
+# cd /path/to/project
+# git pull
+
 `,
 }
 
@@ -36,20 +41,18 @@ async function initial () {
       message: 'Enter the secret you will use:',
     }).then(answer => answer.secret)
 
-    config.bash = await prompt({
-      type: 'editor',
-      name: 'bash',
-      message: 'Enter the bash script the hook will execute',
-      default: config.bash,
-    }).then(answer => answer.bash)
-
-    config.bash = config.bash.replace(/&quot;/g, '"')
-
     const content = fs.readFileSync(path.join(__dirname, '../listener.js.template')).toString()
     const result = handlebars.compile(content)(config)
     fs.writeFileSync(path.join(process.cwd(), './listener.js'), result)
+    fs.writeFileSync(path.join(process.cwd(), './pull.sh'), config.bash)
 
     console.log(`${chalk.green.bold('listener.js')} is created.`)
+    console.log(`${chalk.green.bold('pull.sh')} is created. You can modify it now.`)
+    console.log(`You can edit ${chalk.green.bold('pull.sh')} now.\n`)
+    console.log(`When your modifications are complete, you can launch the hook by executing the following command:\n`)
+    console.log(`${chalk.cyan('node listener.js')}\n`)
+    console.log(`You can also use other tools to deploy the service, for example ${chalk.underline('pm2')}, ${chalk.underline('nodemon')} or ${chalk.underline('forever')}.\n`)
+    console.log(`Thank you for using it and start coding happily! 😊`)
   }
 }
 
