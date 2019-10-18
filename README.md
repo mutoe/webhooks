@@ -16,7 +16,16 @@ npm i -g @mutoe/webhooks
 yarn global add @mutoe/webhooks
 
 webhooks
-# It will then generate a listener.js in your current directory, and then
+
+# It will then generate a listener.js and pull.sh in your current directory, 
+# and then you can edit pull.sh to pull your repository, for example
+
+# The following line will switch to `/path/to/your/repo` and then 
+# execute `git pull`
+#
+# sed -i "$ a\cd /path/to/your/repo\ngit pull" pull.sh
+
+# Next, run
 
 node listener
 # or

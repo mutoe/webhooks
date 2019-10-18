@@ -4,7 +4,7 @@
 
 [English](/README.md)
 
-一个 webhook 可以做任何你想做的事
+一个 webhook 可以帮你做任何你想做的事
 
 > 目前正在开发中，支持 Github webhook API 快速生成
 
@@ -12,14 +12,22 @@
 
 ```bash
 npm i -g @mutoe/webhooks
-# or
+# 或者
 yarn global add @mutoe/webhooks
 
 webhooks
-# 然后会生成一个 listener.js 在你的当前目录下，接下来
+
+# 然后会生成一个 listener.js 和 pull.sh 在你的当前目录下，
+# 接下来你可以编辑 pull.sh 来拉你仓库的代码，比如
+
+# 下面这行脚本将会切换到 `/path/to/your/repo` 然后执行 `git pull`
+#
+# sed -i "$ a\cd /path/to/your/repo\ngit pull" pull.sh
+
+# 接下来执行这个
 
 node listener
-# or
+# 或者
 pm2 start --name webhooks listener.js
 
 # 厉害的小东西!
