@@ -43,6 +43,8 @@ async function initial () {
       default: config.bash,
     }).then(answer => answer.bash)
 
+    config.bash = config.bash.replace(/&quot;/g, '"')
+
     const content = fs.readFileSync(path.join(__dirname, '../listener.js.template')).toString()
     const result = handlebars.compile(content)(config)
     fs.writeFileSync(path.join(process.cwd(), './listener.js'), result)

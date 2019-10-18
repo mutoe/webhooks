@@ -16,17 +16,15 @@ const app = http.createServer((req, res) => {
     body = JSON.parse(body)
 
     if (secret && req.headers['x-hub-signature'] !== sha1) {
-      res.writeHead(403, {
-        'x-sha1': sha1,
-      })
-      res.end(JSON.stringify(req.headers))
+      res.writeHead(403)
+      res.end(JSON.stringify({ message: 'invalid secret' }))
       return
     }
 
     stdout = exec(bash, (err, stdout, stderr) => {
       if (err) {
         res.writeHead(500)
-        res.end(err)
+        res.end(JSON.stringify({ error: err }))
         return
       }
 
