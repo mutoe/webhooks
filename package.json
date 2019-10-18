@@ -9,6 +9,10 @@
   "description": "Webhooks cli",
   "repository": "git@github.com:/mutoe/webhooks.git",
   "author": "mutoe <mutoe@foxmail.com>",
+  "keywords": [
+    "webhook",
+    "github"
+  ],
   "private": false,
   "scripts": {
     "build": "tsc"
