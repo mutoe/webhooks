@@ -46,8 +46,7 @@ async function initial () {
     fs.writeFileSync(path.join(process.cwd(), './listener.js'), result)
     fs.writeFileSync(path.join(process.cwd(), './pull.sh'), config.bash)
 
-    console.log(`${chalk.green.bold('listener.js')} is created.`)
-    console.log(`${chalk.green.bold('pull.sh')} is created. You can modify it now.`)
+    console.log(`${chalk.green.bold('listener.js')} and ${chalk.green.bold('pull.sh')} is created.`)
     console.log(`You can edit ${chalk.green.bold('pull.sh')} now.\n`)
     console.log(`When your modifications are complete, you can launch the hook by executing the following command:\n`)
     console.log(`${chalk.cyan('node listener.js')}\n`)
