@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f69a2225-dfaa-40e4-b0fc-7a82f10bcf99" name="bwg" url="http://mutoe.com">
+        <fileTransfer host="mutoe.com" port="22222" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/home/mutoe" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="60000" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
