@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bin" type="ShConfigurationType">
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/bin/index.js" />
-    <option name="SCRIPT_OPTIONS" value="" />
-    <option name="INTERPRETER_PATH" value="/usr/bin/env" />
-    <option name="INTERPRETER_OPTIONS" value="node" />
-    <method v="2" />
-  </configuration>
-</component>
