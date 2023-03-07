@@ -1,6 +1,6 @@
 {
   "name": "@mutoe/webhooks",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "main": "./bin/index.js",
   "bin": {
     "webhooks": "./bin/index.js"
