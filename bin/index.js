@@ -1,18 +1,23 @@
 #!/usr/bin/env node
 'use strict'
 
-const program = require('commander')
-const path = require('path')
-const os = require('os')
-const fs = require('fs')
-const { prompt } = require('inquirer')
-const chalk = require('chalk')
-const handlebars = require('handlebars')
-const packageJson = require('../package.json')
+import {program} from "commander";
+import path from "path";
+import fs from "fs";
+import inquirer from "inquirer";
+import chalk from "chalk";
+import handlebars from "handlebars";
+import packageJson from "../package.json" assert {type: 'json'};
+import {fileURLToPath} from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const shFile = 'event.sh'
 
 const config = {
   port: 80,
   secret: '',
+  shFile,
   bash: `#!/bin/bash
   
 # The following scripts will be run when the hook is triggered.
@@ -25,7 +30,7 @@ const config = {
 }
 
 async function initial () {
-  config.port = await prompt({
+  config.port = await inquirer.prompt({
     type: 'number',
     name: 'port',
     message: `Enter the ${chalk.underline('port')} you deployed the webhooks use:`,
@@ -33,19 +38,19 @@ async function initial () {
     validate: (port) => port >= 20 && port <= 65535 ? true : 'port should between 20 and 65535',
   }).then(answer => answer.port)
 
-  config.secret = await prompt({
+  config.secret = await inquirer.prompt({
     type: 'input',
     name: 'secret',
     message: 'Enter the secret you will use:',
   }).then(answer => answer.secret)
 
   const content = fs.readFileSync(path.join(__dirname, '../listener.js.template')).toString()
-  const result = handlebars.compile(content)(config)
+  const result = (await handlebars.compile(content))(config)
   fs.writeFileSync(path.join(process.cwd(), './listener.js'), result)
-  fs.writeFileSync(path.join(process.cwd(), './pull.sh'), config.bash)
+  fs.writeFileSync(path.join(process.cwd(), `./${shFile}`), config.bash)
 
-  console.log(`${chalk.green.bold('listener.js')} and ${chalk.green.bold('pull.sh')} is created.`)
-  console.log(`You can edit ${chalk.green.bold('pull.sh')} now.\n`)
+  console.log(`${chalk.green.bold('listener.js')} and ${chalk.green.bold(shFile)} is created.`)
+  console.log(`You can edit ${chalk.green.bold(shFile)} now.\n`)
   console.log(`When your modifications are complete, you can launch the hook by executing the following command:\n`)
   console.log(`${chalk.cyan('node listener.js')}\n`)
   console.log(`You can also use other tools to deploy the service, for example ${chalk.underline('pm2')}, ${chalk.underline('nodemon')} or ${chalk.underline('forever')}.\n`)
@@ -56,10 +61,9 @@ async function main () {
   program
     .version(packageJson.version)
 
-  initial()
+  await initial()
 }
 
-main()
+void main()
 
 program.parse(process.argv)
-

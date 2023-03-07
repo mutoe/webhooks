@@ -4,7 +4,7 @@ const execFile = require('child_process').execFile
 
 const port = {{port}}
 const secret = '{{secret}}'
-const bashFile = './pull.sh'
+const bashFile = './{{shFile}}'
 
 const sign = data => `sha1=${crypto.createHmac('sha1', secret).update(data).digest('hex')}`
 
@@ -41,4 +41,3 @@ const app = http.createServer((req, res) => {
 app.listen(port, () => {
   console.log(`Webhook is listening on port ${port}`)
 })
-

@@ -1,14 +1,15 @@
 {
   "name": "@mutoe/webhooks",
   "version": "0.2.1",
-  "main": "index.ts",
+  "main": "./bin/index.js",
   "bin": {
     "webhooks": "./bin/index.js"
   },
   "license": "MIT",
   "description": "Webhooks cli",
   "repository": "git@github.com:/mutoe/webhooks.git",
-  "author": "mutoe <mutoe@foxmail.com>",
+  "author": "mutoe <imutoe@gmail.com>",
+  "type": "module",
   "keywords": [
     "webhook",
     "github"
@@ -17,14 +18,17 @@
   "scripts": {
     "build": "tsc"
   },
+  "engines": {
+    "node": ">= 16"
+  },
   "dependencies": {
-    "handlebars": "^4.4.3",
-    "chalk": "^2.4.2",
-    "commander": "^3.0.2",
-    "inquirer": "^7.0.0"
+    "chalk": "^5.2.0",
+    "commander": "^10.0.0",
+    "handlebars": "^4.7.7",
+    "inquirer": "^9.1.4"
   },
   "devDependencies": {
-    "@types/inquirer": "^6.5.0",
-    "@types/node": "^12.11.1"
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^14"
   }
 }
