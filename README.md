@@ -13,7 +13,7 @@ A webhook can do anything you want
 ```bash
 npm i -g @mutoe/webhooks
 # or
-yarn global add @mutoe/webhooks
+pnpm i -g @mutoe/webhooks
 
 webhooks
 

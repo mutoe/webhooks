@@ -4,7 +4,7 @@
 
 [English](/README.md)
 
-一个 webhook 可以帮你做任何你想做的事
+一个简单的 webhook 实现，可以帮你做任何你想做的事
 
 > 目前正在开发中，支持 Github webhook API 快速生成
 
@@ -13,7 +13,7 @@
 ```bash
 npm i -g @mutoe/webhooks
 # 或者
-yarn global add @mutoe/webhooks
+pnpm i -g @mutoe/webhooks
 
 webhooks
 
